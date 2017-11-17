@@ -12,6 +12,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.nzf.markdown.R;
+import com.nzf.markdown.lanya.MessageSendActivityKt;
 import com.nzf.markdown.utils.FilesUtils;
 import com.nzf.markdown.view.GLayout;
 import com.nzf.markdown.web.ResultWebViewActivity;
@@ -32,7 +33,6 @@ public class MainActivity extends AppCompatActivity implements GLayout.OnGListen
 
         copyAssetsToDst(this,"","");
 
-
         tv = findViewById(R.id.tv);
         gLayout = findViewById(R.id.glayout);
 
@@ -40,6 +40,7 @@ public class MainActivity extends AppCompatActivity implements GLayout.OnGListen
             @Override
             public void run() {
 //                startActivity(new Intent(MainActivity.this, ResultWebViewActivity.class));
+                  startActivity(new Intent(MainActivity.this, MessageSendActivityKt.class));
             }
         },1000);
     }
@@ -105,4 +106,5 @@ public class MainActivity extends AppCompatActivity implements GLayout.OnGListen
     public void onGameOver() {
         Toast.makeText(this,"GAME-OVER", Toast.LENGTH_SHORT).show();
     }
+
 }

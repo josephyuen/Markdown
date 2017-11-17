@@ -284,7 +284,7 @@ class GLayout : RelativeLayout{
                 val random = Random()
                 var next = random.nextInt(16)
                 var item = mGame2048Items!![next]
-                
+
                 while (item!!.getNumber() !== 0) {
                     next = random.nextInt(16)
                     item = mGame2048Items!![next]
