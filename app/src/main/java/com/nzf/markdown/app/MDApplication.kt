@@ -10,6 +10,7 @@ import com.example.baselib.database.MkDBHelper
 /**
  * Created by niezhuofu on 17-11-8.
  */
+
 class MDApplication : Application() {
     companion object {
         @SuppressLint("StaticFieldLeak")
