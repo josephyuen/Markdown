@@ -14,27 +14,5 @@ class TestActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?, persistentState: PersistableBundle?) {
         super.onCreate(savedInstanceState, persistentState)
         setContentView(R.layout.activity_home)
-
-
-
-        Thread(Runnable {
-
-//          HttpUrlUtils.Companion.HttpBuilder.builder()
-
-//            run {
-//                while(true){
-//                    Log.i(TAG,"js")
-//                }
-//            }
-
-//            kotlin.run {
-//                while(true){
-//                    Log.i(TAG,"js")
-//                }
-//            }
-        }).start()
-
-
-
     }
 }
