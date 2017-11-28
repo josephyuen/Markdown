@@ -32,13 +32,7 @@ class EditorActivity : AppCompatActivity() {
     }
 
 
-
-
-
-
-
-
-
+    
 
     companion object {
 
