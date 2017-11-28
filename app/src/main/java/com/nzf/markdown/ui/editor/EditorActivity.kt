@@ -1,5 +1,7 @@
 package com.nzf.markdown.ui.editor
 
+import android.app.Activity
+import android.content.Intent
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
 import android.view.View
@@ -28,4 +30,26 @@ class EditorActivity : AppCompatActivity() {
         transaction.replace(R.id.ll_container,editorFragment)
         transaction.commit()
     }
+
+
+
+
+
+
+
+
+
+
+    companion object {
+
+        /**
+         * params type:启动类型,startActivity OR startActivityForResult
+         */
+        fun startCreateFile(type : String,activity : Activity){
+            activity.startActivity(Intent(activity,EditorActivity :: class.java))
+        }
+    }
+
+
+
 }

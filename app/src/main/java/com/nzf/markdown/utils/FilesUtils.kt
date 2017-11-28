@@ -26,6 +26,11 @@ class FilesUtils {
     }
 
     companion object {
+        private val TAG = "FilesUtils"
+
+        val FILETYPE_DIR: Int = 0
+        val FILETYPE_MD: Int = 1
+        val FILETYPE_HTML: Int = 2
 
         val FILE_MD: String = ".md"
         val FILE_HTML: String = ".html"
@@ -155,9 +160,9 @@ class FilesUtils {
         return filesList
     }
 
-    private val FILETYPE_DIR: Int = 0
-    private val FILETYPE_MD: Int = 1
-    private val FILETYPE_HTML: Int = 2
+    val FILETYPE_DIR: Int = 0
+    val FILETYPE_MD: Int = 1
+    val FILETYPE_HTML: Int = 2
 
     /**
      * 判断是否是MD文件
@@ -172,6 +177,10 @@ class FilesUtils {
         bean.fileLastTime = f.lastModified()
         bean.fileSize = f.length()
         bean.filePath = f.path
+
+
+        Log.i(TAG,f.name + "--" + f.isDirectory)
+
 
         if (f.isFile) {
             var fileSuffix: String = getFileSuffix(fileName)
@@ -251,9 +260,12 @@ class FilesUtils {
      * @return 文件扩展名
      */
     private fun getFileSuffix(fileName: String): String {
-        var index: Int = fileName.lastIndexOf(".")
-        var fileSuffix: String = fileName.substring(index, fileName.length)
-        return fileSuffix
+         if(!fileName.contains(".")){
+             return ""
+         }
+         var index: Int = fileName.lastIndexOf(".")
+         var fileSuffix: String = fileName.substring(index, fileName.length)
+         return fileSuffix
     }
 
     /**
@@ -311,9 +323,9 @@ class FilesUtils {
         var mdFileDir: File? = null
         if (Environment.MEDIA_MOUNTED.equals(Environment.getExternalStorageState())) {
             if (TextUtils.isEmpty(type)) {
-                mdFileDir = mContext!!.getExternalFilesDir(null)
+                mdFileDir = Environment.getExternalStorageDirectory()
             } else {
-                mdFileDir = mContext!!.getExternalFilesDir(type)
+                mdFileDir = File (Environment.getExternalStorageDirectory().absolutePath,type)
             }
         } else {
             Log.i("FileUtils", "getExternalDirectory fail ,the reason is sdCard nonexistence or sdCard mount fail !")

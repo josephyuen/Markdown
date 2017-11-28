@@ -4,7 +4,9 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="90dp"
-    android:background="@android:color/white">
+    android:focusable="true"
+    android:clickable="true"
+    android:foreground="?android:attr/selectableItemBackground">
 
     <RelativeLayout
         android:layout_width="match_parent"
@@ -16,7 +18,7 @@
         android:layout_height="45dp"
         android:layout_marginStart="25dp"
         android:layout_centerVertical="true"
-        android:src="@drawable/ic_file_pic"/>
+        android:src="@drawable/ic_file"/>
 
     <android.support.v7.widget.AppCompatTextView
         android:layout_marginTop="10dp"
@@ -25,6 +27,7 @@
         android:layout_width="wrap_content"
         android:layout_height="45dp"
         android:textSize="17sp"
+        android:maxLength="12"
         android:textColor="@android:color/black"
         tools:text="你好.md"
         android:layout_toEndOf="@+id/aiv"
@@ -50,7 +53,7 @@
         android:layout_marginEnd="25dp"
         android:layout_width="wrap_content"
         android:layout_height="45dp"
-        android:textSize="18sp"
+        android:textSize="14sp"
         android:textColor="@android:color/darker_gray"
         android:layout_alignParentEnd="true"
         tools:text="1天前"

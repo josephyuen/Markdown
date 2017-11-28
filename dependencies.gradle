@@ -7,7 +7,7 @@ project.ext {
             compileSdkVersion: 26,
             buildToolsVersion: "26.0.2",
             applicationId    : "com.nzf.markdown",
-            minSdkVersion    : 19,
+            minSdkVersion    : 21,
             targetSdkVersion : 26,
             versionCode      : 1,
             versionName      : "1.0"

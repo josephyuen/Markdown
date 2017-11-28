@@ -8,9 +8,18 @@
         <item name="colorAccent">@color/colorAccent</item>
     </style>
 
+
+    <style name="AppTheme.FullScreen" parent="AppTheme">
+        <item name="android:windowFullscreen">true</item>
+        <item name="android:windowActionBar">false</item>
+        <item name="windowActionBarOverlay">false</item>
+        <item name="windowNoTitle">true</item>
+    </style>
+
+
+
     <style name="dialog_exit_traslate_down">
         <item name="android:windowExitAnimation">@anim/dialog_exit_traslate_down</item>
     </style>
-
 
 </resources>
