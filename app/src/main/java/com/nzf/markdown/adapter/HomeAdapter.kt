@@ -19,9 +19,20 @@ import com.nzf.markdown.utils.FilesUtils
 class HomeAdapter(mContext: Context?, mLayoutRes: Int?, mList: List<MDFileBean>?) :
         BaseSingleAdapter<MDFileBean, HomeAdapter.Companion.HomeFileHolder>(mContext, mLayoutRes, mList) {
 
+    private lateinit var clickListener : SimpleClickListener<MDFileBean>
+
+    fun setPerformClick(clickListener: SimpleClickListener<MDFileBean>){
+        this.clickListener = clickListener
+    }
+
     override fun convert(holder: HomeFileHolder, data: MDFileBean) {
         holder.setFileName(R.id.tv_title,data.fileName!!).setModifyTime(R.id.tv_modify,data.fileLastTime!!).
                 setFileSize(R.id.tv_size,data.fileSize!!).setLeftPic(R.id.aiv,data.fileType!!)
+
+        holder.itemView.setOnClickListener {
+            clickListener.performClick(holder.itemView,data)
+        }
+
     }
 
     override fun onCreateViewHolder(parent: ViewGroup?, viewType: Int): HomeFileHolder =
@@ -30,7 +41,8 @@ class HomeAdapter(mContext: Context?, mLayoutRes: Int?, mList: List<MDFileBean>?
 
     companion object {
 
-        class HomeFileHolder(itemView: View) : BaseSingleViewHolder(itemView) {
+
+        class HomeFileHolder(itemView : View) : BaseSingleViewHolder(itemView) {
             lateinit var tv_modify : AppCompatTextView
             lateinit var tv_title : AppCompatTextView
             lateinit var tv_size : AppCompatTextView
@@ -75,9 +87,6 @@ class HomeAdapter(mContext: Context?, mLayoutRes: Int?, mList: List<MDFileBean>?
         }
 
     }
-
-
-
 
 
 }

@@ -1,9 +1,9 @@
 package com.nzf.markdown.web
 
 import android.os.Bundle
-import android.os.Environment
 import android.support.v7.app.AppCompatActivity
 import android.view.ViewTreeObserver
+import com.nzf.markdown.HomeActivity
 import com.nzf.markdown.view.WebMarkView
 
 /**
@@ -13,6 +13,7 @@ import com.nzf.markdown.view.WebMarkView
 class ResultWebViewActivity : AppCompatActivity(),ViewTreeObserver.OnGlobalLayoutListener{
 
     private var isFirst : Boolean = true
+    private lateinit var path : String
 
     private lateinit var mWebView : WebMarkView
 
@@ -20,6 +21,8 @@ class ResultWebViewActivity : AppCompatActivity(),ViewTreeObserver.OnGlobalLayou
         super.onCreate(savedInstanceState)
         mWebView = WebMarkView(this)
         setContentView(mWebView)
+        path = intent.getStringExtra(HomeActivity.VIEW_FILE_PATH)
+
         mWebView.addJavascriptInterface(WebMarkView.AndroidToast(this),"AndroidToast")
     }
 
@@ -40,7 +43,7 @@ class ResultWebViewActivity : AppCompatActivity(),ViewTreeObserver.OnGlobalLayou
 
     override fun onGlobalLayout() {
           if(isFirst){
-              mWebView.data = WebMarkView.formatFileData(Environment.getExternalStorageDirectory().absolutePath + "/README.md")
+              mWebView.data = WebMarkView.formatFileData(path)//Environment.getExternalStorageDirectory().absolutePath + "/README.md")
               mWebView.loadDefault()
               isFirst = false
           }
