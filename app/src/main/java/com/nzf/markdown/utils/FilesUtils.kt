@@ -1,5 +1,6 @@
 package com.nzf.markdown.utils
 
+import android.annotation.SuppressLint
 import android.content.Context
 import android.os.Environment
 import android.text.TextUtils
@@ -20,8 +21,7 @@ class FilesUtils {
     val FILEDIR_EXTERNAL: String = "ExternalFileDir"
     val FILEDIR_INTERNAL: String = "InternalFileDir"
 
-
-    constructor() {
+    init {
         mContext = MDApplication.getContext()
     }
 
@@ -34,14 +34,15 @@ class FilesUtils {
             get() = SingletonHolder.INSTANCE
 
         private object SingletonHolder {
+            @SuppressLint("StaticFieldLeak")
             val INSTANCE = FilesUtils()
         }
     }
 
     //生成MD文件
     fun newMDFile(pathName: String): Boolean {
-        var file: File = File(nowPath + pathName)
-        var isCreate: Boolean = false
+        var file = File(nowPath + pathName)
+        var isCreate = false
 
         if (file.exists()) {
             ToastUtils.showShort(R.string.file_exists)
@@ -62,8 +63,8 @@ class FilesUtils {
 
     // 生成文件夹
     fun mkFileDir(pathName: String): Boolean {
-        var file: File = File(nowPath + pathName)
-        var isCreate: Boolean = false
+        var file = File(nowPath + pathName)
+        var isCreate = false
 
         if (file.exists()) {
             ToastUtils.showShort(R.string.file_exists)
@@ -81,17 +82,17 @@ class FilesUtils {
      *            要删除的文件对象
      * @return 文件删除成功则返回true
      */
-    fun deleteFile(file: File): Boolean {
-        var isDelete: Boolean = false
+    private fun deleteFile(file: File): Boolean {
+        var isDelete = false
 
-        if (file.exists()) {
+        return if (file.exists()) {
             isDelete = file.delete()
             Log.i("FileUtils:", "file delete.")
-            return isDelete
+            isDelete
         } else {
             Log.i("FileUtils:", "file is null")
             ToastUtils.showShort(R.string.file_noexists)
-            return isDelete
+            isDelete
         }
     }
 
@@ -102,31 +103,33 @@ class FilesUtils {
      * @param file
      * @return
      */
-    fun deleteFolder(file: File): Boolean {
-        var flag: Boolean = false
+    private fun deleteFolder(file: File): Boolean {
+        var flag: Boolean
         val files: Array<File>? = file.listFiles()
         if (files != null && files.size >= 0)
         // 目录下存在文件列表
         {
-            for (i in files.indices) {
-                val f = files[i]
-                if (f.isFile) {
-                    // 删除子文件
-                    flag = deleteFile(f)
-                    if (flag == false) {
-                        return flag
+            files.indices
+                    .asSequence()
+                    .map { files[it] }
+                    .forEach {
+                        if (it.isFile) {
+                            // 删除子文件
+                            flag = deleteFile(it)
+                            if (!flag) {
+                                return flag
+                            }
+                        } else {
+                            // 删除子目录
+                            flag = deleteFolder(it)
+                            if (!flag) {
+                                return flag
+                            }
+                        }
                     }
-                } else {
-                    // 删除子目录
-                    flag = deleteFolder(f)
-                    if (flag == false) {
-                        return flag
-                    }
-                }
-            }
         }
         flag = file.delete()
-        return if (flag == false) {
+        return if (!flag) {
             flag
         } else {
             true
@@ -139,33 +142,29 @@ class FilesUtils {
      * @return ArrayList<MDFileBean> 当前路径MD文件集合
      */
     fun showAllMDDir(path: String?): ArrayList<MDFileBean>? {
-        var file: File = File(path)
+        var file = File(path)
 
-        var filesList: java.util.ArrayList<MDFileBean>? = ArrayList<MDFileBean>()
+        var filesList: java.util.ArrayList<MDFileBean>? = ArrayList()
 
         var files: Array<File> = file.listFiles()
 
-        if (files.size != 0) {
-            for (f in files) {
-                var fileBean: MDFileBean? = getMDFile(f)
-                if (fileBean != null)
-                    filesList!!.add(fileBean)
-            }
+        if (files.isNotEmpty()) {
+            files.mapNotNull { getMDFile(it) }.forEach { filesList!!.add(it) }
         }
 
         return filesList
     }
 
-    val FILETYPE_DIR: Int = 0
-    val FILETYPE_MD: Int = 1
-    val FILETYPE_HTML: Int = 2
+    private val FILETYPE_DIR: Int = 0
+    private val FILETYPE_MD: Int = 1
+    private val FILETYPE_HTML: Int = 2
 
     /**
      * 判断是否是MD文件
      * @param f  文件对象
      * @return ArrayList<MDFileBean> 当前路径MD文件集合
      */
-    fun getMDFile(f: File): MDFileBean? {
+    private fun getMDFile(f: File): MDFileBean? {
         var bean: MDFileBean? = MDFileBean()
         var fileName: String = f.name
 
@@ -200,8 +199,8 @@ class FilesUtils {
      * @return boolean
      */
     fun copyFile(srcPath: String, targetDir: String): Boolean {
-        var flag: Boolean = false
-        var file: File = File(srcPath)
+        var flag = false
+        var file = File(srcPath)
 
         if (!file.exists()) {
             ToastUtils.showShort(R.string.file_noexists)
@@ -216,7 +215,7 @@ class FilesUtils {
             return flag
         }
 
-        var targetFile: File = File(targetPath)
+        var targetFile = File(targetPath)
         if (targetFile.exists() && targetFile.isFile) {
             ToastUtils.showShort(R.string.file_exists)
             return flag
@@ -251,7 +250,7 @@ class FilesUtils {
      * @param fileName 文件名
      * @return 文件扩展名
      */
-    fun getFileSuffix(fileName: String): String {
+    private fun getFileSuffix(fileName: String): String {
         var index: Int = fileName.lastIndexOf(".")
         var fileSuffix: String = fileName.substring(index, fileName.length)
         return fileSuffix
@@ -276,21 +275,21 @@ class FilesUtils {
         }
 
         if (mdFileDir == null) {
-            Log.e("getFileDirectory", "getFileDirectory fail ,the reason is mobile phone unknown exception !");
+            Log.e("getFileDirectory", "getFileDirectory fail ,the reason is mobile phone unknown exception !")
         } else {
             if (!mdFileDir.exists() && !mdFileDir.mkdirs()) {
-                Log.e("getFileDirectory", "getFileDirectory fail ,the reason is make directory fail !");
+                Log.e("getFileDirectory", "getFileDirectory fail ,the reason is make directory fail !")
             }
         }
-        nowPath = mdFileDir.path
+        nowPath = mdFileDir!!.path
         return mdFileDir
     }
 
     /**
      *type为空获取File文件夹根目录
      */
-    fun getInternalFileDirectory(type: String?): File {
-        var mdFileDir: File? = null
+    private fun getInternalFileDirectory(type: String?): File? {
+        var mdFileDir: File?
         if (TextUtils.isEmpty(type)) {
             mdFileDir = mContext!!.filesDir
         } else {
@@ -298,7 +297,7 @@ class FilesUtils {
         }
 
 
-        if (!mdFileDir!!.exists() && !mdFileDir!!.mkdirs()) {
+        if (!mdFileDir!!.exists() && !mdFileDir.mkdirs()) {
             Log.i("FileUtils",
                     "getInternalDirectory fail ,the reason is make directory fail !")
         }
@@ -308,7 +307,7 @@ class FilesUtils {
     /**
      *type为空获取File文件夹根目录
      */
-    fun getExternalFileDirectory(type: String?): File? {
+    private fun getExternalFileDirectory(type: String?): File? {
         var mdFileDir: File? = null
         if (Environment.MEDIA_MOUNTED.equals(Environment.getExternalStorageState())) {
             if (TextUtils.isEmpty(type)) {
@@ -321,5 +320,7 @@ class FilesUtils {
         }
         return mdFileDir
     }
+
+
 
 }
