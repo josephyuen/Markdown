@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.v7.widget.CardView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="90dp"
+    android:background="@android:color/white">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+    <android.support.v7.widget.AppCompatImageView
+        android:id="@+id/aiv"
+        android:layout_width="wrap_content"
+        android:layout_height="45dp"
+        android:layout_marginStart="25dp"
+        android:layout_centerVertical="true"
+        android:src="@drawable/ic_file_pic"/>
+
+    <android.support.v7.widget.AppCompatTextView
+        android:layout_marginTop="10dp"
+        android:gravity="center"
+        android:id="@+id/tv_title"
+        android:layout_width="wrap_content"
+        android:layout_height="45dp"
+        android:textSize="17sp"
+        android:textColor="@android:color/black"
+        tools:text="你好.md"
+        android:layout_toEndOf="@+id/aiv"
+        android:layout_marginStart="20dp"/>
+
+    <android.support.v7.widget.AppCompatTextView
+        android:layout_width="wrap_content"
+        android:layout_height="45dp"
+        android:id="@+id/tv_size"
+        android:textSize="17sp"
+        android:textColor="@android:color/darker_gray"
+        tools:text="12kb."
+        android:layout_marginStart="20dp"
+        android:gravity="center"
+        android:layout_toEndOf="@+id/aiv"
+        android:layout_marginTop="50dp"/>
+
+
+    <android.support.v7.widget.AppCompatTextView
+        android:id="@+id/tv_modify"
+        android:layout_centerVertical="true"
+        android:gravity="center"
+        android:layout_marginEnd="25dp"
+        android:layout_width="wrap_content"
+        android:layout_height="45dp"
+        android:textSize="18sp"
+        android:textColor="@android:color/darker_gray"
+        android:layout_alignParentEnd="true"
+        tools:text="1天前"
+        tools:ignore="RelativeOverlap" />
+
+    </RelativeLayout>
+
+</android.support.v7.widget.CardView>

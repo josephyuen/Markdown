@@ -16,7 +16,7 @@ class MkDBHelper(name: String?,version: Int)
 
         val TABLE_DOWNLOAD_FILE = "file_download"
 
-        val SQL_DOWNLOAD = "create table if not exists ${TABLE_DOWNLOAD_FILE}(_id integer primary key autoincrement,id integer not null,url text not null,progress text not null,length text not null,_extra1 text default(''),_extra2 text default('')"
+        val SQL_DOWNLOAD = "create table if not exists ${TABLE_DOWNLOAD_FILE}(_id integer primary key autoincrement,id integer not null,url text not null,length text not null,_extra1 text default(''),_extra2 text default(''))"
 
         @SuppressLint("StaticFieldLeak")
         var dbHelper : MkDBHelper? = null
