@@ -27,6 +27,7 @@ class MDApplication : Application() {
         BaseDBHelper.initDataBase(mContext)
 
         MkDBHelper.getInstance().getWritableDatabase(BaseDBHelper.SECRET_KEY)
+
     }
 
 }
