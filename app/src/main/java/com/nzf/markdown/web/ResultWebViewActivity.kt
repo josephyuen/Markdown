@@ -1,9 +1,10 @@
 package com.nzf.markdown.web
 
+import android.content.Context
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
 import android.view.ViewTreeObserver
-import com.nzf.markdown.HomeActivity
+import android.view.inputmethod.InputMethodManager
 import com.nzf.markdown.view.WebMarkView
 
 /**
@@ -21,9 +22,12 @@ class ResultWebViewActivity : AppCompatActivity(),ViewTreeObserver.OnGlobalLayou
         super.onCreate(savedInstanceState)
         mWebView = WebMarkView(this)
         setContentView(mWebView)
-        path = intent.getStringExtra(HomeActivity.VIEW_FILE_PATH)
+//        path = intent.getStringExtra(HomeActivity.VIEW_FILE_PATH)
 
         mWebView.addJavascriptInterface(WebMarkView.AndroidToast(this),"AndroidToast")
+
+        val input : InputMethodManager = getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
+        input.showSoftInput(mWebView,0)
     }
 
     override fun onResume() {

@@ -35,6 +35,7 @@ object ConstantWeb {
 
     val BLANK_PAGE_CONTAINER = "file:///android_asset/result.html"
 
+    val EDITOR_PAGE = "file:///android_asset/editor.html"
 }
 
 

@@ -6,7 +6,10 @@ import android.content.Intent
 import android.os.Bundle
 import android.util.AttributeSet
 import android.util.TypedValue
-import android.webkit.*
+import android.webkit.JavascriptInterface
+import android.webkit.WebChromeClient
+import android.webkit.WebView
+import android.webkit.WebViewClient
 import android.widget.Toast
 import com.nzf.markdown.ui.editor.EditorActivity
 import com.nzf.markdown.ui.fragment.BigViewerFragment
@@ -49,12 +52,22 @@ class WebMarkView : WebView{
         settings.defaultTextEncodingName = "UTF-8"
         settings.javaScriptEnabled = true
 
-        webViewClient = object : WebViewClient() {
-            override fun onPageFinished(view: WebView?, url: String?) {
-                checkThePage(view,url)
-            }
+        settings.allowContentAccess = true
+        settings.databaseEnabled = true
+        settings.domStorageEnabled = true
+        settings.setAppCacheEnabled(true)
+        settings.savePassword = false
+        settings.saveFormData = false
+        settings.useWideViewPort = true
+        settings.loadWithOverviewMode = true
 
-            override fun shouldOverrideUrlLoading(view: WebView?, request: WebResourceRequest?): Boolean = true
+
+
+
+        webViewClient = object : WebViewClient() {
+//            override fun onPageFinished(view: WebView?, url: String?) {
+//                checkThePage(view,url)
+//            }
 
         }
 

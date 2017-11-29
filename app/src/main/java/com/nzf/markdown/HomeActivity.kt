@@ -79,12 +79,12 @@ class HomeActivity: AppCompatActivity(),View.OnClickListener,SimpleClickListener
     override fun performClick(v: View, data : MDFileBean) {
         Log.i(TAG,data.filePath)
 
-        if(data.fileType != FilesUtils.FILETYPE_DIR){
+//        if(data.fileType != FilesUtils.FILETYPE_DIR){
             val intent = Intent(this@HomeActivity,ResultWebViewActivity :: class.java)
             intent.putExtra(VIEW_FILE_PATH,data.filePath)
             startActivity(intent)
             return
-        }
+//        }
 
         //list files from the clicked folder AND refresh view
 
