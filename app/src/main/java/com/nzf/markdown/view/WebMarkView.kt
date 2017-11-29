@@ -58,16 +58,15 @@ class WebMarkView : WebView{
         settings.setAppCacheEnabled(true)
         settings.savePassword = false
         settings.saveFormData = false
-        settings.useWideViewPort = true
         settings.loadWithOverviewMode = true
 
 
 
 
         webViewClient = object : WebViewClient() {
-//            override fun onPageFinished(view: WebView?, url: String?) {
-//                checkThePage(view,url)
-//            }
+            override fun onPageFinished(view: WebView?, url: String?) {
+                checkThePage(view,url)
+            }
 
         }
 

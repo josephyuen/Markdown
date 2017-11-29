@@ -15,7 +15,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         >
-        <activity android:name=".test.activity.TestActivity"
+        <activity android:name=".SplashActivity"
             android:theme="@style/AppTheme.FullScreen">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -23,13 +23,9 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <!--<activity android:name=".web.ResultWebViewActivity" />-->
-        <!--<activity android:name=".MainActivity"/>-->
         <activity android:name=".ui.editor.EditorActivity" />
-        <!--<activity android:name=".SplashActivity" />-->
         <activity android:name=".HomeActivity" />
-
-        <!--<activity android:name=".test.activity.TestActivity"/>-->
+        <activity android:name=".web.ResultWebViewActivity" />
     </application>
 
 </manifest>
