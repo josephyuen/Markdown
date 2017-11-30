@@ -32,6 +32,7 @@ dependencies {
     api files('libs/sqlcipher.jar')
     api files('libs/commons-codec.jar')
     api files('libs/google-collections-1.0.jar')
+    api project(':spinner')
 }
 repositories {
     mavenCentral()

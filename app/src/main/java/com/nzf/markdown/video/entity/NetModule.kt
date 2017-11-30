@@ -20,23 +20,28 @@ class NetModule {
 
         fun getNetInstance() : ApiService{
             if(apiService == null){
-                val loggingInterceptor = HttpLoggingInterceptor()
-                loggingInterceptor.level = if (BuildConfig.DEBUG) HttpLoggingInterceptor.Level.BODY else HttpLoggingInterceptor.Level.NONE
-                val okhttpClient = OkHttpClient.Builder()
-                        .connectTimeout(30, TimeUnit.SECONDS)
-                        .writeTimeout(20, TimeUnit.SECONDS)
-                        .readTimeout(20, TimeUnit.SECONDS)
-                        .addInterceptor(loggingInterceptor)
-                        .build()
-                val retrofit = Retrofit.Builder()
-                        .client(okhttpClient)
-                        .baseUrl("http://static.owspace.com/")
-                        .addConverterFactory(StringConverterFactory.create())
-                        .addConverterFactory(GsonConverterFactory.create(EntityUtils.gson))//
-                        .addCallAdapterFactory(RxJavaCallAdapterFactory.create())
-                        .build()
+                synchronized(NetModule::class.java.simpleName) {
+                    if(apiService == null) {
+                        val loggingInterceptor = HttpLoggingInterceptor()
+                        loggingInterceptor.level = if (BuildConfig.DEBUG) HttpLoggingInterceptor.Level.BODY else HttpLoggingInterceptor.Level.NONE
+                        val okhttpClient = OkHttpClient.Builder()
+                                .connectTimeout(30, TimeUnit.SECONDS)
+                                .writeTimeout(20, TimeUnit.SECONDS)
+                                .readTimeout(20, TimeUnit.SECONDS)
+                                .addInterceptor(loggingInterceptor)
+                                .build()
 
-                apiService = retrofit.create(ApiService::class.java)
+                        val retrofit = Retrofit.Builder()
+                                .client(okhttpClient)
+                                .baseUrl("http://static.owspace.com/")
+                                .addConverterFactory(StringConverterFactory.create())
+                                .addConverterFactory(GsonConverterFactory.create(EntityUtils.gson))
+                                .addCallAdapterFactory(RxJavaCallAdapterFactory.create())
+                                .build()
+
+                        apiService = retrofit.create(ApiService::class.java)
+                    }
+                }
             }
             return apiService!!
         }

@@ -44,6 +44,8 @@ dependencies {
     implementation rootProject.ext.dependencies["retrofit2-converter-gson"]
 
     implementation 'net.danlew:android.joda:2.9.3'
+    compile 'io.reactivex:rxandroid:1.2.1'
+    compile 'com.alibaba:fastjson:1.1.67.android'
     implementation project(':baselib')
 }
 repositories {
