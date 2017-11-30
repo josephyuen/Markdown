@@ -35,7 +35,7 @@ class TestActivity : AppCompatActivity() {
         webview.settings.loadWithOverviewMode = true
 
 //        webview.loadUrl("http://www.baidu.com")
-        webview.loadUrl("file:///android_asset/gif/index.html")
+        webview.loadUrl("file:///android_asset/codeflask/editor.html")
 
     }
 }

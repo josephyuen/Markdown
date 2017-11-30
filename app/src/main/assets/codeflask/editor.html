@@ -28,25 +28,16 @@
 </head>
 <body>
 <div class="code-column">
-    <!--<h2>Running via <code>CodeFlask.run()</code></h2>-->
     <h2>JavaScript</h2>
     <div class="codeview" id="code"></div>
-    <!--<button onclick="updateCode()">Update code content</button>-->
 </div>
 
 <script>
-        var flask = new CodeFlask,
-            flasks = new CodeFlask;
+        var flask = new CodeFlask;
         flask.run('#code', {
-            language: 'javascript'
+            language: 'java'
         });
-        flask.onUpdate(function(code){
-            console.log(code);
-        });
-        function updateCode() {
-            flask.update('var goo = "stick"');
-        }
 
-    </script>
+</script>
 </body>
 </html>

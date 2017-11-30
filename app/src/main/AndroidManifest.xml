@@ -15,7 +15,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         >
-        <activity android:name=".SplashActivity"
+        <activity android:name=".test.activity.TestActivity"
             android:theme="@style/AppTheme.FullScreen">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -26,6 +26,7 @@
         <activity android:name=".ui.editor.EditorActivity" />
         <activity android:name=".HomeActivity" />
         <activity android:name=".web.ResultWebViewActivity" />
+        <activity android:name=".video.VideoListActivity" />
     </application>
 
 </manifest>

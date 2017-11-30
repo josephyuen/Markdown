@@ -43,10 +43,10 @@ class HomeAdapter(mContext: Context?, mLayoutRes: Int?, mList: List<MDFileBean>?
 
 
         class HomeFileHolder(itemView : View) : BaseSingleViewHolder(itemView) {
-            lateinit var tv_modify : AppCompatTextView
-            lateinit var tv_title : AppCompatTextView
-            lateinit var tv_size : AppCompatTextView
-            lateinit var aiv : AppCompatImageView
+            private lateinit var tv_modify : AppCompatTextView
+            private lateinit var tv_title : AppCompatTextView
+            private lateinit var tv_size : AppCompatTextView
+            private lateinit var aiv : AppCompatImageView
 
             fun setLeftPic(@IdRes resId: Int,fileType : Int): HomeFileHolder{
                 aiv = getView(resId) as AppCompatImageView
