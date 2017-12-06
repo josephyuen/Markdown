@@ -2,18 +2,17 @@ package com.nzf.markdown.video
 
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
-import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.RecyclerView
 import android.util.Log
-import android.widget.Spinner
 import com.alibaba.fastjson.JSON
 import com.nzf.markdown.R
-import com.nzf.markdown.video.entity.Item
+import com.nzf.markdown.video.entity.Bean
 import com.nzf.markdown.video.entity.NetModule
-import com.nzf.markdown.video.entity.Result
+import com.nzf.markdown.video.entity.NotesBean
 import rx.Subscriber
 import rx.android.schedulers.AndroidSchedulers
 import rx.schedulers.Schedulers
+import java.util.*
 
 /**
  * Created by joseph on 2017/11/30.
@@ -28,47 +27,49 @@ class VideoListActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_home)
         recycler = findViewById(R.id.rv_home_list)
-        bindData()
+
+        Thread(Runnable {
+            val r = Random()
+            while (true){
+                Thread.sleep((r.nextInt(3000).toLong())+ 532L)
+                bindData()
+            }
+        }).start()
     }
 
     private fun bindData(){
         deviceId = AppUtils.getDeviceId(this)
 
-        val spinner = Spinner(this)
+//        val spinner = Spinner(this)
+        getListByPage()
 
-
-        getListByPage(page,pageId,deviceId)
-
-        val linearManager = LinearLayoutManager(this)
-        recycler.layoutManager = linearManager
-
+//        val linearManager = LinearLayoutManager(this)
+//        recycler.layoutManager = linearManager
     }
 
-    private fun getListByPage(page: Int,pageId: String, deviceId: String){
-        NetModule.getNetInstance().getList("api","getList",page,3,pageId,"0",
-                "android","1.3.0", TimeUtil.currentSeconds, deviceId,1)
+    private fun getListByPage(){
+        NetModule.getNetInstance().getHomeList(0,20, (System.currentTimeMillis() - (Math.random() * 10020)).toLong()
+        ,2,1001,"86456503064262",26)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(object : Subscriber<Result.Companion.Data<List<Item>>>(){
+                .subscribe(object : Subscriber<Bean.DataBean<List<NotesBean>>>(){
                     override fun onError(e: Throwable?) {
-                         e!!.printStackTrace()
+                        Log.i("video-jia",JSON.toJSONString(e))
                     }
 
-                    override fun onNext(t: Result.Companion.Data<List<Item>>?) {
-                         Log.i("video", JSON.toJSONString(t!!.datas))
-
-                        for (data in t!!.datas!!){
-                            Log.i("video",data.getVideo())
-
-                        }
-
+                    override fun onNext(t: Bean.DataBean<List<NotesBean>>) {
+                        Log.i("video-jia",JSON.toJSONString(t))
                     }
 
                     override fun onCompleted() {
 
                     }
                 })
-
     }
+
+
+// 编程大部分的时间都是在调试,调试要点在于快速定位问题,
+//定位问题需要将所有与此问题相关联的逻辑提取出来,一一排除,
+//不能死扣着一段逻辑不放.
 
 }

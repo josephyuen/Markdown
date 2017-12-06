@@ -11,6 +11,7 @@ class StringConverter : Converter<ResponseBody, String> {
 
     @Throws(IOException::class)
     override fun convert(value: ResponseBody): String {
+
         return value.string()
     }
 }

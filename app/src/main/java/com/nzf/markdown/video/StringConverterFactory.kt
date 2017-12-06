@@ -19,7 +19,6 @@ class StringConverterFactory : Converter.Factory() {
         return if (type === String::class.java) {
             StringConverter()
         } else null
-        //其它类型我们不处理，返回null就行
     }
 
 }

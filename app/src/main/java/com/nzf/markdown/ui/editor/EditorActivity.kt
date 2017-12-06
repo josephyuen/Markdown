@@ -38,5 +38,4 @@ class EditorActivity : AppCompatActivity() {
         overridePendingTransition(0,R.anim.translate_right_bottom)
     }
 
-
 }

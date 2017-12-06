@@ -9,11 +9,11 @@
     <script src="prism.min.js"></script>
     <script src="codeflask.js"></script>
     <style>
-    .code-column {
+    .result-column {
         float:left;
         padding:15px;
     }
-    .code-column h2{
+    .result-column h2{
         font-size:15px;
         background:yellow;
     }
@@ -27,14 +27,14 @@
     </style>
 </head>
 <body>
-<div class="code-column">
+<div class="result-column">
     <h2>JavaScript</h2>
-    <div class="codeview" id="code"></div>
+    <div class="codeview" id="result"></div>
 </div>
 
 <script>
         var flask = new CodeFlask;
-        flask.run('#code', {
+        flask.run('#result', {
             language: 'java'
         });
 

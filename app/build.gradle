@@ -45,7 +45,7 @@ dependencies {
 
     implementation 'net.danlew:android.joda:2.9.3'
     compile 'io.reactivex:rxandroid:1.2.1'
-    compile 'com.alibaba:fastjson:1.1.67.android'
+    compile 'com.alibaba:fastjson:1.2.40'
     implementation project(':baselib')
 }
 repositories {

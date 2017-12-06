@@ -28,5 +28,4 @@ open class BaseDBHelper(name: String?,version: Int)
         }
     }
 
-
 }

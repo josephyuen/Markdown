@@ -6,7 +6,6 @@ import java.util.*
 /**
  * Created by Mr.Yangxiufeng
  * DATE 2016/7/21
- * owspace
  */
 object TimeUtil {
     val currentSeconds: Long

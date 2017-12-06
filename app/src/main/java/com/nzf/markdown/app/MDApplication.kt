@@ -28,6 +28,7 @@ class MDApplication : Application() {
 
         MkDBHelper.getInstance().getWritableDatabase(BaseDBHelper.SECRET_KEY)
 
+
     }
 
 }
