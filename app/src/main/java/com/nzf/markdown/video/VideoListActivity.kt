@@ -39,12 +39,7 @@ class VideoListActivity : AppCompatActivity() {
 
     private fun bindData(){
         deviceId = AppUtils.getDeviceId(this)
-
-//        val spinner = Spinner(this)
         getListByPage()
-
-//        val linearManager = LinearLayoutManager(this)
-//        recycler.layoutManager = linearManager
     }
 
     private fun getListByPage(){

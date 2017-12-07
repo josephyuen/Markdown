@@ -6,10 +6,7 @@ import android.content.Intent
 import android.os.Bundle
 import android.util.AttributeSet
 import android.util.TypedValue
-import android.webkit.JavascriptInterface
-import android.webkit.WebChromeClient
-import android.webkit.WebView
-import android.webkit.WebViewClient
+import android.webkit.*
 import android.widget.Toast
 import com.nzf.markdown.ui.editor.EditorActivity
 import com.nzf.markdown.ui.fragment.BigViewerFragment
@@ -66,6 +63,12 @@ class WebMarkView : WebView{
         webViewClient = object : WebViewClient() {
             override fun onPageFinished(view: WebView?, url: String?) {
                 checkThePage(view,url)
+            }
+
+            override fun shouldOverrideUrlLoading(view: WebView?, request: WebResourceRequest?): Boolean {
+                // return true if you want the application to handle it ,else it will be handled by webview
+
+                return super.shouldOverrideUrlLoading(view, request)
             }
 
         }
