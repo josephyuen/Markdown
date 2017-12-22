@@ -3,6 +3,7 @@ package com.aliouswang.swipeback;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
+import android.os.Message;
 import android.support.v7.app.AppCompatActivity;
 import android.text.TextUtils;
 import android.view.View;
@@ -48,6 +49,13 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View v) {
                 Intent intent = new Intent(MainActivity.this, NormalSwipeBackAct.class);
                 startActivity(intent);
+                Handler handler = new Handler(getMainLooper()){
+                    @Override
+                    public void handleMessage(Message msg) {
+                        super.handleMessage(msg);
+                    }
+                };
+
             }
         });
 

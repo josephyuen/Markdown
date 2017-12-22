@@ -16,7 +16,7 @@
 
     <style name="AppTheme.NoAnimation" parent="AppTheme.NoActionBar">
         <item name="android:windowExitAnimation">@anim/activity_alpha_out</item>
-
+        <item name="android:windowFullscreen">true</item>
     </style>
 
 
