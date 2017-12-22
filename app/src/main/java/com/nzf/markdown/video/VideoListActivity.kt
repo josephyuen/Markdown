@@ -1,10 +1,13 @@
 package com.nzf.markdown.video
 
+import android.content.Intent
 import android.os.Bundle
+import android.os.Handler
 import android.support.v7.app.AppCompatActivity
 import android.support.v7.widget.RecyclerView
 import android.util.Log
 import com.alibaba.fastjson.JSON
+import com.aliouswang.swipeback.MainActivity
 import com.nzf.markdown.R
 import com.nzf.markdown.video.entity.Bean
 import com.nzf.markdown.video.entity.NetModule
@@ -13,6 +16,7 @@ import rx.Subscriber
 import rx.android.schedulers.AndroidSchedulers
 import rx.schedulers.Schedulers
 import java.util.*
+
 
 /**
  * Created by joseph on 2017/11/30.
@@ -23,6 +27,8 @@ class VideoListActivity : AppCompatActivity() {
     private var pageId : String = "0"
     private var page : Int = 1
 
+    private var snowFlake : SnowFlake = SnowFlake(0,1)
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_home)
@@ -31,10 +37,27 @@ class VideoListActivity : AppCompatActivity() {
         Thread(Runnable {
             val r = Random()
             while (true){
+                bindData()
                 Thread.sleep((r.nextInt(3000).toLong())+ 532L)
                 bindData()
             }
         }).start()
+    }
+
+    private var isFirst : Boolean = true
+
+    override fun onResume() {
+        super.onResume()
+        if(isFirst){
+            val handler = Handler()
+            handler.postDelayed({
+                val intent = Intent(this@VideoListActivity,MainActivity :: class.java)
+                startActivity(intent)
+            },500)
+
+            isFirst = false
+        }
+
     }
 
     private fun bindData(){
@@ -42,9 +65,10 @@ class VideoListActivity : AppCompatActivity() {
         getListByPage()
     }
 
+    //machinecode:  86456503064262
     private fun getListByPage(){
-        NetModule.getNetInstance().getHomeList(0,20, (System.currentTimeMillis() - (Math.random() * 10020)).toLong()
-        ,2,1001,"86456503064262",26)
+        NetModule.getNetInstance().getHomeList((Math.random() * 10).toInt(),50, (System.currentTimeMillis() - (Math.random() * 10020)).toLong()
+        ,2,1001,"56456503064254",26)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(object : Subscriber<Bean.DataBean<List<NotesBean>>>(){
@@ -61,8 +85,6 @@ class VideoListActivity : AppCompatActivity() {
                     }
                 })
     }
-
-
 
 
 

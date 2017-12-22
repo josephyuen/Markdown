@@ -4,8 +4,7 @@ import android.annotation.SuppressLint
 import android.app.Application
 import android.content.Context
 import android.content.res.Resources
-import com.example.baselib.database.BaseDBHelper
-import com.example.baselib.database.MkDBHelper
+import android.support.multidex.MultiDex
 
 /**
  * Created by niezhuofu on 17-11-8.
@@ -24,11 +23,16 @@ class MDApplication : Application() {
     override fun onCreate() {
         super.onCreate()
         mContext = this
-        BaseDBHelper.initDataBase(mContext)
+//        BaseDBHelper.initDataBase(mContext)
 
-        MkDBHelper.getInstance().getWritableDatabase(BaseDBHelper.SECRET_KEY)
+//        MkDBHelper.getInstance().getWritableDatabase(BaseDBHelper.SECRET_KEY)
 
 
     }
 
+
+    override fun attachBaseContext(base: Context?) {
+        super.attachBaseContext(base)
+        MultiDex.install(base)
+    }
 }

@@ -40,8 +40,12 @@ class TestActivity : AppCompatActivity() {
         webview.settings.useWideViewPort = true
         webview.settings.loadWithOverviewMode = true
 
-        webview.loadUrl("http://www.baidu.com")
-        webview.loadUrl("file:///android_asset/codeflask/editor.html")
+
+        webview.settings.userAgentString = webview.settings.
+                userAgentString + "/YnoteAndroid/Android6.0.1"
+
+
+        webview.loadUrl("file:///android_asset/markdown/index.html")
 
     }
 }

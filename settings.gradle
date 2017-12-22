@@ -1,1 +1,1 @@
-include ':app', ':baselib', ':spinner', ':screenfit'
+include ':app', ':baselib', ':spinner', ':screenfit', ':swipeback'

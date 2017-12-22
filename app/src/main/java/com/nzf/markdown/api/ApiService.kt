@@ -12,9 +12,9 @@ import rx.Observable
 interface ApiService {
 
     /**
-     *
-     *http://mobile.yishihui.com/zone/notepub/getNewNoteList.htmls?
-     * pageNo=0&pageSize=20&theLastDateTime=1512030650274&device=2&appKey=1001&machineCode=86456503064262&versionCode=26
+     * 首页数据
+     http://mobile.yishihui.com/zone/notepub/getNewNoteList.htmls?
+     pageNo=0&pageSize=20&theLastDateTime=1512030650274&device=2&appKey=1001&machineCode=86456503064262&versionCode=26
      */
 
     @GET("getNewNoteList.htmls")
@@ -22,6 +22,6 @@ interface ApiService {
                        @Query("theLastDataTime")theLastDateTime : Long,@Query("device")device: Int,
                        @Query("appKey")appKey: Int,@Query("machineCode")machineCode: String,
                        @Query("versionCode")versionCode: Int): Observable<Bean.DataBean<List<NotesBean>>>
-//    http://mobile.yishihui.com/zone/notepub/getNewNoteList.htmls?pageNo=0&pageSize=20&theLastDateTime=1512030650274&device=2&appKey=1001&machineCode=86456503064262&versionCode=26
+
 
 }
