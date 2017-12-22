@@ -32,6 +32,9 @@ public class ScrollImageview extends AppCompatImageView{
     }
 
 
+    /**
+     * ******************  Tips:scroll 的滑动针对的是 view的内容,所以一般用作自定义ViewGroup
+     */
     @Override
     public void computeScroll() {
         if(mScroller.computeScrollOffset()){
