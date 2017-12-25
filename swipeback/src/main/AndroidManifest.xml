@@ -5,7 +5,7 @@
     <application
         android:allowBackup="true">
 
-        <activity android:name=".MainActivity"
+        <activity android:name="com.nzf.markdown.video.MainActivity"
             android:theme="@style/AppTheme.NoAnimation"/>
 
         <activity android:name=".ViewDragerHelperDemoAct"

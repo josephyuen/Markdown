@@ -16,8 +16,9 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         >
-        <activity android:name=".video.VideoListActivity"
-            android:theme="@style/AppTheme.FullScreen">
+        <activity android:name="qdx.stickyheaderdecoration.MainActivity"
+            android:theme="@style/AppTheme.FullScreen"
+            android:launchMode="singleTask">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -27,6 +28,7 @@
         <activity android:name=".ui.editor.EditorActivity" />
         <activity android:name=".HomeActivity" />
         <activity android:name=".web.ResultWebViewActivity" />
+        <activity android:name=".video.MainActivity"/>
         <!--<activity android:name=".video.VideoListActivity" />-->
         <service android:name=".video.player.PlaybackService" />
     </application>

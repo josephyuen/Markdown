@@ -125,22 +125,19 @@ public class LargeImageView extends View {
     }
 
     @Override
-    public boolean onTouchEvent(MotionEvent event)
-    {
+    public boolean onTouchEvent(MotionEvent event) {
         mDetector.onTouchEvent(event);
         return true;
     }
 
     @Override
-    protected void onDraw(Canvas canvas)
-    {
+    protected void onDraw(Canvas canvas) {
         Bitmap bm = mDecoder.decodeRegion(mRect, options);
         canvas.drawBitmap(bm, 0, 0, null);
     }
 
     @Override
-    protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec)
-    {
+    protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
         super.onMeasure(widthMeasureSpec, heightMeasureSpec);
 
         int width = getMeasuredWidth();
@@ -153,7 +150,6 @@ public class LargeImageView extends View {
         mRect.top = imageHeight / 2 - height / 2;
         mRect.right = mRect.left + width;
         mRect.bottom = mRect.top + height;
-
     }
 
 }

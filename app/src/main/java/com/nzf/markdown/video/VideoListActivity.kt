@@ -7,7 +7,6 @@ import android.support.v7.app.AppCompatActivity
 import android.support.v7.widget.RecyclerView
 import android.util.Log
 import com.alibaba.fastjson.JSON
-import com.aliouswang.swipeback.MainActivity
 import com.nzf.markdown.R
 import com.nzf.markdown.video.entity.Bean
 import com.nzf.markdown.video.entity.NetModule
@@ -51,7 +50,7 @@ class VideoListActivity : AppCompatActivity() {
         if(isFirst){
             val handler = Handler()
             handler.postDelayed({
-                val intent = Intent(this@VideoListActivity,MainActivity :: class.java)
+                val intent = Intent(this@VideoListActivity, MainActivity:: class.java)
                 startActivity(intent)
             },500)
 
@@ -85,7 +84,6 @@ class VideoListActivity : AppCompatActivity() {
                     }
                 })
     }
-
 
 
 

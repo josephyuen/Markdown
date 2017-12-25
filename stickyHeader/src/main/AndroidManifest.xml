@@ -1,0 +1,14 @@
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="qdx.stickyheaderdecoration">
+
+    <uses-permission android:name="android.permission.INTERNET" />
+
+    <application
+        android:allowBackup="true">
+        <activity android:name=".linear.LinearNormalActivity" />
+        <activity android:name=".linear.LinearCustomActivity" />
+        <activity android:name=".grid.GridNormalActivity" />
+        <activity android:name=".grid.GridCustomActivity" />
+    </application>
+
+</manifest>

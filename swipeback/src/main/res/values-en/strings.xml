@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="gotoPage">goto to view drag demo page</string>
+    <string name="gotonormal">goto to normal swipe back page</string>
+    <string name="firstpage">First Page</string>
+</resources>

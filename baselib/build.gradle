@@ -36,6 +36,7 @@ dependencies {
     api project(':screenfit')
     api project(':swipeback')
     api 'com.android.support:multidex:1.0.1'
+    api project(':stickyHeader')
 }
 repositories {
     mavenCentral()

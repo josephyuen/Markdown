@@ -1,4 +1,8 @@
 <resources>
     <string name="app_name">SwipeBackDemo</string>
     <string name="action_settings">Settings</string>
+
+    <string name="gotoPage">进入拖拽演示页面</string>
+    <string name="gotonormal">进入普通滑动退出页面</string>
+    <string name="firstpage">首页</string>
 </resources>

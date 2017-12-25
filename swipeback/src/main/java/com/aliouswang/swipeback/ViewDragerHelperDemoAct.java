@@ -8,19 +8,15 @@ import android.os.Bundle;
 import android.support.v4.widget.ViewDragHelper;
 import android.text.TextUtils;
 import android.util.Base64;
-import android.widget.ImageView;
 
 import com.aliouswang.swipeback.helper.SwipeHelper;
-import com.aliouswang.swipeback.widget.BaseSwipeLayout;
 
 /**
  * Created by aliouswang on 16/2/18.
  */
 public class ViewDragerHelperDemoAct extends Activity{
-
-    private BaseSwipeLayout swipe_layout;
+    public static final String ENCODE_SHOT_PIC = "encode_shot_bitmap";
     private SwipeHelper mSwipeHelper;
-    private ImageView imageView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,7 +29,7 @@ public class ViewDragerHelperDemoAct extends Activity{
     }
 
     private void settlePic() {
-        String encode = getIntent().getStringExtra(MainActivity.ENCODE_SHOT_PIC);
+        String encode = getIntent().getStringExtra(ENCODE_SHOT_PIC);
         if(!TextUtils.isEmpty(encode)){
             byte[] bytes = Base64.decode(encode,Base64.DEFAULT);
             Bitmap bimap = BitmapFactory.decodeByteArray(bytes,0,bytes.length);
