@@ -16,7 +16,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         >
-        <activity android:name="qdx.stickyheaderdecoration.MainActivity"
+        <activity android:name="app.com.thetechnocafe.kotlinweather.Home.HomeActivity"
             android:theme="@style/AppTheme.FullScreen"
             android:launchMode="singleTask">
             <intent-filter>

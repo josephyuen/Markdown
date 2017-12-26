@@ -51,7 +51,7 @@ public class LinearCustomActivity extends AppCompatActivity {
             @Override
             public View getHeaderView(final int pos) {
                 final View headView = LayoutInflater.from(LinearCustomActivity.this).inflate(R.layout.decoration_car_head_view, null);
-                final ImageView ivAvatar = (ImageView) headView.findViewById(R.id.header_iv_avatar);
+                final ImageView ivAvatar = headView.findViewById(R.id.header_iv_avatar);
                 decoration.loadImage(carList.get(pos).getLetter(), pos, ivAvatar);
                 Log.e("QDX", "view inflate " + pos + "头部" + headView.hashCode());
                 return headView;

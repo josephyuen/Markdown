@@ -7,7 +7,7 @@ android {
 
 
     defaultConfig {
-        minSdkVersion 21
+        minSdkVersion 19
         targetSdkVersion 26
         versionCode 1
         versionName "1.0"
@@ -37,6 +37,7 @@ dependencies {
     api project(':swipeback')
     api 'com.android.support:multidex:1.0.1'
     api project(':stickyHeader')
+    api project(':weather')
 }
 repositories {
     mavenCentral()

@@ -14,7 +14,7 @@ buildscript {
 android {
     compileSdkVersion 26
     defaultConfig {
-        minSdkVersion 14
+        minSdkVersion 19
         targetSdkVersion 26
     }
 }

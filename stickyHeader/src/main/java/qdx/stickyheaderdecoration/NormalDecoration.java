@@ -44,6 +44,7 @@ public abstract class NormalDecoration extends RecyclerView.ItemDecoration {
 
         mHeaderContentPaint = new Paint(Paint.ANTI_ALIAS_FLAG);
         mHeaderContentPaint.setColor(headerContentColor);
+
         Paint.FontMetrics fontMetrics = mHeaderTxtPaint.getFontMetrics();
         float total = -fontMetrics.ascent + fontMetrics.descent;
         txtYAxis = total / 2 - fontMetrics.descent;
@@ -127,6 +128,7 @@ public abstract class NormalDecoration extends RecyclerView.ItemDecoration {
             int viewTop = childView.getTop() + recyclerView.getPaddingTop();
             if (pos == 0 || !curHeaderName.equals(getHeaderName(pos - 1))) {//如果当前位置为0，或者与上一个item头部名不同的，都腾出头部空间
                 //绘制每个组头【奥拓上头的a(奥迪上头就不用绘制a),本田上头的b】
+
                 if (headerDrawEvent != null) {
                     View headerView;
                     if (headViewMap.get(pos) == null) {
@@ -138,15 +140,18 @@ public abstract class NormalDecoration extends RecyclerView.ItemDecoration {
                         headerView.layout(0, 0, right, headerHeight);//布局layout
                         headViewMap.put(pos, headerView);
                         canvas.drawBitmap(headerView.getDrawingCache(), left, viewTop - headerHeight, null);
-
                     } else {
                         headerView = headViewMap.get(pos);
                         canvas.drawBitmap(headerView.getDrawingCache(), left, viewTop - headerHeight, null);
                     }
-                } else {
+                }
+
+                //没有指明头部具体怎样绘制
+                else {
                     canvas.drawRect(left, viewTop - headerHeight, right, viewTop, mHeaderContentPaint);
                     canvas.drawText(curHeaderName, left + textPaddingLeft, viewTop - headerHeight / 2 + txtYAxis, mHeaderTxtPaint);
                 }
+
                 if (headerHeight < viewTop && viewTop <= 2 * headerHeight) { //此判断是刚好2个头部碰撞，悬浮头部就要偏移
                     translateTop = viewTop - 2 * headerHeight;
                 }
@@ -160,7 +165,9 @@ public abstract class NormalDecoration extends RecyclerView.ItemDecoration {
 
         canvas.save();
         canvas.translate(0, translateTop);
-        if (headerDrawEvent != null) {//inflater
+
+        //指明了具体要绘制成怎样的view,对itemView进行了inflater
+        if (headerDrawEvent != null) {
             View headerView;
             if (headViewMap.get(firstPos) == null) {
                 headerView = headerDrawEvent.getHeaderView(firstPos);
@@ -175,12 +182,15 @@ public abstract class NormalDecoration extends RecyclerView.ItemDecoration {
                 headerView = headViewMap.get(firstPos);
                 canvas.drawBitmap(headerView.getDrawingCache(), left, 0, null);
             }
-        } else {
+        }
+        //未指明要绘制怎样的view
+        else {
             /*绘制悬浮的头部*/
             canvas.drawRect(left, 0, right, headerHeight, mHeaderContentPaint);
             canvas.drawText(firstHeaderName, left + textPaddingLeft, headerHeight / 2 + txtYAxis, mHeaderTxtPaint);
-//           canvas.drawLine(0, headerHeight / 2, right, headerHeight / 2, mHeaderTxtPaint);//画条线看看文字居中不
+           canvas.drawLine(0, headerHeight / 2, right, headerHeight / 2, mHeaderTxtPaint);//画条线看看文字居中不
         }
+
         canvas.restore();
         Log.i(TAG, "绘制悬浮头部");
     }
@@ -198,16 +208,7 @@ public abstract class NormalDecoration extends RecyclerView.ItemDecoration {
     }
 
 
-    private GestureDetector.OnGestureListener gestureListener = new GestureDetector.OnGestureListener() {
-        @Override
-        public boolean onDown(MotionEvent e) {
-            return false;
-        }
-
-        @Override
-        public void onShowPress(MotionEvent e) {
-        }
-
+    private GestureDetector.OnGestureListener gestureListener = new GestureDetector.SimpleOnGestureListener() {
         @Override
         public boolean onSingleTapUp(MotionEvent e) {
             for (int i = 0; i < stickyHeaderPosArray.size(); i++) {
@@ -220,20 +221,6 @@ public abstract class NormalDecoration extends RecyclerView.ItemDecoration {
                     return true;
                 }
             }
-            return false;
-        }
-
-        @Override
-        public boolean onScroll(MotionEvent e1, MotionEvent e2, float distanceX, float distanceY) {
-            return false;
-        }
-
-        @Override
-        public void onLongPress(MotionEvent e) {
-        }
-
-        @Override
-        public boolean onFling(MotionEvent e1, MotionEvent e2, float velocityX, float velocityY) {
             return false;
         }
     };

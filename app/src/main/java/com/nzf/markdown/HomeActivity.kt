@@ -35,7 +35,7 @@ class HomeActivity: AppCompatActivity(),View.OnClickListener,SimpleClickListener
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_home)
+        setContentView(R.layout.activity_home_app)
         initView()
     }
 

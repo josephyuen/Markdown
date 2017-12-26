@@ -6,6 +6,7 @@ import android.os.Handler
 import android.support.v7.app.AppCompatActivity
 import android.support.v7.widget.RecyclerView
 import android.util.Log
+import app.com.thetechnocafe.kotlinweather.Home.HomeActivity
 import com.alibaba.fastjson.JSON
 import com.nzf.markdown.R
 import com.nzf.markdown.video.entity.Bean
@@ -30,15 +31,15 @@ class VideoListActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_home)
+        setContentView(R.layout.activity_home_app)
         recycler = findViewById(R.id.rv_home_list)
 
         Thread(Runnable {
             val r = Random()
             while (true){
-                bindData()
+//                bindData()
                 Thread.sleep((r.nextInt(3000).toLong())+ 532L)
-                bindData()
+//                bindData()
             }
         }).start()
     }
@@ -50,7 +51,9 @@ class VideoListActivity : AppCompatActivity() {
         if(isFirst){
             val handler = Handler()
             handler.postDelayed({
-                val intent = Intent(this@VideoListActivity, MainActivity:: class.java)
+
+
+                val intent = Intent(this@VideoListActivity, HomeActivity:: class.java)
                 startActivity(intent)
             },500)
 
